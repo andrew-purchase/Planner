@@ -38,8 +38,8 @@ class Migration(migrations.Migration):
             name='Offered_In',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('course', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='accounts.courses')),
-                ('semester', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='accounts.semesters')),
+                ('course', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='planner.courses')),
+                ('semester', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='planner.semesters')),
             ],
         ),
     ]
