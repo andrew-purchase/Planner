@@ -25,6 +25,6 @@ class Offered_In(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     semester = models.ForeignKey(Semester, on_delete=models.CASCADE)
     def __str__(self):
-        return self.course
+        return self.course.course_id
     # semester_id = models.CharField(max_length=10)
 
