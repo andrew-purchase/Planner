@@ -6,10 +6,15 @@ from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from rest_framework.parsers import JSONParser
 from django.views.decorators.csrf import csrf_exempt
-from planner.models import Course, Semester, Offered_In
-from planner.serializer import CourseSerializer, SemesterSerializer, Offered_InSerializer, Offered_InTitlesSerializer
+from planner.models import Course, Semester, Offered_In, Prerequisite
+from planner.serializer import CourseSerializer, SemesterSerializer, Offered_InSerializer, Offered_InTitlesSerializer, PrerequisiteSerializer
 
 # from django.db import models
+
+class SignUpView(generic.CreateView):
+    form_class = UserCreationForm
+    success_url = reverse_lazy('login')
+    template_name = 'registration/signup.html'
 
 def course_list(request):
     """
@@ -20,11 +25,14 @@ def course_list(request):
         serializer = CourseSerializer(courses, many=True)
         return JsonResponse(serializer.data, safe=False)
 
-class SignUpView(generic.CreateView):
-    form_class = UserCreationForm
-    success_url = reverse_lazy('login')
-    template_name = 'registration/signup.html'
-
+def prerequisite_list(request):
+    """
+    List all courses.
+    """
+    if request.method == 'GET':
+        prerequisite = Prerequisite.objects.all()
+        serializer = PrerequisiteSerializer(prerequisite, many=True)
+        return JsonResponse(serializer.data, safe=False)
 
 @csrf_exempt
 def semester_list(request):

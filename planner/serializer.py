@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Course, Semester, Offered_In
+from .models import Course, Semester, Offered_In, Prerequisite
 
 
 class CourseSerializer(serializers.ModelSerializer):
@@ -45,3 +45,13 @@ class Offered_InTitlesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Offered_In
         fields = ['semester']
+
+class PrerequisiteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Prerequisite
+        fields = ['course', 'prereq']
+
+class PrerequisiteTitleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Prerequisite
+        fields = ['course']
