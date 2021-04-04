@@ -20,7 +20,7 @@ urlpatterns = [
     path('', TemplateView.as_view(template_name='home.html'), name='home'),
     path('admin/', admin.site.urls),
     path('courses', views.course_list),
-    path('prerequisite', views.prerequisite_list), ############
+    path('prerequisite', views.prerequisite_list),
     path('semesters', views.semester_list),
     path('offered_in', views.offered_in_list),
     path('courses/offered_in/<slug:cid>', views.offered_in_course),
